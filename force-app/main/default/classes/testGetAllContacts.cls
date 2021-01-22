@@ -1,29 +1,31 @@
 @isTest public with sharing class testGetAllContacts {
     
     @isTest private static void testGetAllContacts(){
+        Test.startTest();
         //Create and insert Accounts
-        Account firstAccount = new Account(Name = 'Misha');
-        Account secondAccount = new Account(Name = 'Pasha');
+        Account firstAccount = new Account(Name = 'abc');
         List<Account> accounts = new List<Account>();
         accounts.add(firstAccount);
-        accounts.add(secondAccount);
         insert accounts;
 
         //Create and insert Contacts
-        Contact firstContact = new Contact(AccountId = firstAccount.id, Account = firstAccount, LastName = 'Lebed');
-        Contact secondContact = new Contact(AccountId = secondAccount.id, Account = secondAccount, LastName = 'Sankin');
+        Contact firstContact = new Contact(Email = 'a@gmail.com', MobilePhone = '123', AccountId = firstAccount.id, Account = firstAccount, FirstName = 'Misha', LastName = 'Lebed');
         List<Contact> contacts = new List<Contact>();
         contacts.add(firstContact);
-        contacts.add(secondContact);
         insert contacts;
-
-        List<Contact> correctList = [
-            SELECT FirstName, LastName, Email, MobilePhone, CreatedDate, AccountId, Account.Name
-            FROM Contact
-            ORDER BY FirstName
-        ];
         List<Contact> returnedList = getContacts.getAllContacts();
+        System.assertEquals(contacts, returnedList);
+        Test.stopTest();
+    }
 
-        System.assertEquals(correctList, returnedList);
+    @isTest private static void testNoAccountLinked(){
+        Test.startTest();
+        Contact contact = new Contact(Email = 'a@gmail.com', MobilePhone = '123', FirstName = 'Misha', LastName = 'Lebed');
+        List<Contact> contacts = new List<Contact>();
+        contacts.add(contact);
+        insert contacts;
+        List<Contact> returnedList = getContacts.getAllContacts();
+        System.assertEquals(contacts, returnedList);
+        Test.stopTest();
     }
 }

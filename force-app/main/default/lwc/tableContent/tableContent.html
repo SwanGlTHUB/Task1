@@ -9,7 +9,7 @@
         <div class="slds-truncate" title="Email">{contact.Email}</div>
     </td>
     <td>
-        <template if:true={contact.Account.Name}>
+        <template if:true={contact.Account}>
             <a account-id = {contact.AccountId} onclick={handleRedirectToAccountPage}>{contact.Account.Name}</a>
         </template>
     </td>

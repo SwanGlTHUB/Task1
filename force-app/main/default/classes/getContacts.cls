@@ -4,7 +4,7 @@ public with sharing class getContacts {
     public static List<Contact> getAllContacts() {
         List<Contact> allContacts;
         allContacts = [
-            SELECT FirstName, LastName, Email, MobilePhone, CreatedDate, AccountId, Account.Name
+            SELECT Account.Name, Email, MobilePhone, AccountId, FirstName, LastName, CreatedDate
             FROM Contact
             ORDER BY FirstName
         ];

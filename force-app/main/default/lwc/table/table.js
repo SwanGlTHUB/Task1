@@ -14,27 +14,22 @@ export default class Table extends LightningElement {
         this.contactsToDisplay = data
     }
 
-    longestCommonPrefix(stringA, stringB) {
-        let minimalLength = Math.min(stringA.length, stringB.length)
-        let longestCommonPrefixLen = 0
-        for (let i = 0; i < minimalLength; i++) {
-            if (stringA[i] === stringB[i]) {
-                longestCommonPrefixLen++
-            } else {
-                break
-            }
-        }
-        return longestCommonPrefixLen
-    }
+    
 
     filterContactsByNamePrefix(prefix) {
         let newContactsToDisplay = []
+        prefix = prefix.toLowerCase()
         this.allContacts.forEach((item) => {
-            let longestPrefix = this.longestCommonPrefix(item.FirstName, prefix)
-            if (longestPrefix < prefix.length) {
+            if(!item.hasOwnProperty('FirstName')){
+                if(prefix.length === 0){
+                    newContactsToDisplay.push(item)
+                }
+                return
+            }
+            if (item.FirstName.toLowerCase().search(prefix) === -1) {
                 return
             } else {
-                newContactsToDisplay.push({...item, prefixLen: longestPrefix })
+                newContactsToDisplay.push(item)
             }
         })
         this.contactsToDisplay = newContactsToDisplay
