@@ -1,0 +1,35 @@
+<template>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+      <caption class = 'slds-text-heading_large slds-var-m-left_medium'>Contact</caption>  
+      <thead>
+          <tr class="slds-text-title_caps">
+            <th>
+              <div class="slds-truncate" title="First Name">First Name</div>
+            </th>
+            <th>
+              <div class="slds-truncate" title="Last Name">Last Name</div>
+            </th>
+            <th>
+              <div class="slds-truncate" title="Email">Email</div>
+            </th>
+            <th>
+              <div class="slds-truncate" title="Account">Account</div>
+            </th>
+            <th>
+              <div class="slds-truncate" title="Mobile Phone">Mobile Phone</div>
+            </th>
+            <th>
+              <div class="slds-truncate" title="Created Date">Created Date</div>
+            </th>
+            <th>
+              <div class="slds-truncate" title="Contact">Contact</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+         <template for:each = {contacts} for:item = 'contact'>
+            <c-table-content key = {contact.x}></c-table-content>
+         </template>
+</tbody>
+</table>
+</template>

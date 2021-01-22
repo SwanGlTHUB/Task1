@@ -1,0 +1,23 @@
+<template>
+            <td>
+              <div class="slds-truncate" title="First Name">{contact.firstName}</div>
+            </td>
+            <td>
+              <div class="slds-truncate" title="Last Name">{contact.lastName}</div>
+            </td>
+            <td>
+              <div class="slds-truncate" title="Email">{contact.email}</div>
+            </td>
+            <td>
+              <div class="slds-truncate" title="Account">{contact.account}</div>
+            </td>
+            <td>
+              <div class="slds-truncate" title="Mobile Phone">{contact.mobilePhone}</div>
+            </td>
+            <td>
+              <lightning-formatted-date-time value={contact.createdDate} year="2-digit" month="2-digit" day="2-digit" weekday="long"></lightning-formatted-date-time>
+            </td>
+            <td>
+              <div class="slds-truncate" title="Contact">{contact.contact}</div>
+            </td>
+</template>
