@@ -9,12 +9,13 @@
         insert accounts;
 
         //Create and insert Contacts
-        Contact firstContact = new Contact(Email = 'a@gmail.com', MobilePhone = '123', AccountId = firstAccount.id, Account = firstAccount, FirstName = 'Misha', LastName = 'Lebed');
+        Contact firstContact = new Contact(Email = 'a@gmail.com', MobilePhone = '123',
+                                           AccountId = firstAccount.id, Account = firstAccount, FirstName = 'Misha', LastName = 'Lebed');
         List<Contact> contacts = new List<Contact>();
         contacts.add(firstContact);
         insert contacts;
         List<Contact> returnedList = getContacts.getAllContacts();
-        System.assertEquals(contacts, returnedList);
+        System.assertEquals(contacts[0].id, returnedList[0].id);
         Test.stopTest();
     }
 
@@ -25,7 +26,7 @@
         contacts.add(contact);
         insert contacts;
         List<Contact> returnedList = getContacts.getAllContacts();
-        System.assertEquals(contacts, returnedList);
+        System.assertEquals(contacts[0].id, returnedList[0].id);
         Test.stopTest();
     }
 }
