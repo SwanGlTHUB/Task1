@@ -7,6 +7,7 @@ public with sharing class getContacts {
             SELECT Account.Name, Email, MobilePhone, AccountId, FirstName, LastName, CreatedDate
             FROM Contact
             ORDER BY FirstName
+            LIMIT 100
         ];
         return allContacts;    
     }

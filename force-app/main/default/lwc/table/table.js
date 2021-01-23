@@ -1,17 +1,23 @@
 import { LightningElement, wire } from 'lwc';
 import getAllContacts from "@salesforce/apex/getContacts.getAllContacts";
+import { getRecord } from 'lightning/uiRecordApi';
 
 export default class Table extends LightningElement {
     allContacts
     contactsToDisplay
     filterInputValue
 
-    @wire(getAllContacts) contactsHandler({ data, error }) {
-        if (error) {
+    @wire(getRecord, {fields: ['Contact.LastName']})someProp(){
+        console.log('rabotaet')
+    }
+
+
+    @wire(getAllContacts) contactsHandler(response) {
+        if (response.error) {
             throw Exception('Cant get Contacts');
         }
-        this.allContacts = data
-        this.contactsToDisplay = data
+        this.allContacts = response.data
+        this.contactsToDisplay = response.data
     }
 
     
